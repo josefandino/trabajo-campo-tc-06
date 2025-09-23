@@ -25,6 +25,7 @@
     private void InitializeComponent() {
       tb_control_1 = new TabControl();
       tabPage1 = new TabPage();
+      btn_ordenar = new Button();
       lst_clientes = new ListBox();
       cmb_ordenar = new ComboBox();
       lbl_error_fecha = new Label();
@@ -43,19 +44,19 @@
       rtb_tasa_alta = new RadioButton();
       rtb_tasa_baja = new RadioButton();
       cmb_periodo = new ComboBox();
-      txt_dni_cliente = new TextBox();
-      text_monto_prestamo = new TextBox();
-      textBox1 = new TextBox();
-      txt_nombre_cliente = new TextBox();
+      txt_dni = new TextBox();
+      txt_monto = new TextBox();
+      lbl_mensaje = new TextBox();
+      txt_nombre = new TextBox();
       btn_register = new Button();
       tabPage2 = new TabPage();
+      lbl_resultado_busqueda = new Label();
+      lbl_tasa_aplicada = new Label();
+      lbl_monto_total = new Label();
+      lst_cronograma = new ListBox();
+      txt_buscar_dni = new TextBox();
+      btn_buscar = new Button();
       label6 = new Label();
-      button1 = new Button();
-      textBox2 = new TextBox();
-      listBox1 = new ListBox();
-      label2 = new Label();
-      label3 = new Label();
-      label4 = new Label();
       tb_control_1.SuspendLayout();
       tabPage1.SuspendLayout();
       tabPage2.SuspendLayout();
@@ -77,6 +78,7 @@
       // tabPage1
       // 
       tabPage1.BackColor = Color.LightGray;
+      tabPage1.Controls.Add(btn_ordenar);
       tabPage1.Controls.Add(lst_clientes);
       tabPage1.Controls.Add(cmb_ordenar);
       tabPage1.Controls.Add(lbl_error_fecha);
@@ -95,10 +97,10 @@
       tabPage1.Controls.Add(rtb_tasa_alta);
       tabPage1.Controls.Add(rtb_tasa_baja);
       tabPage1.Controls.Add(cmb_periodo);
-      tabPage1.Controls.Add(txt_dni_cliente);
-      tabPage1.Controls.Add(text_monto_prestamo);
-      tabPage1.Controls.Add(textBox1);
-      tabPage1.Controls.Add(txt_nombre_cliente);
+      tabPage1.Controls.Add(txt_dni);
+      tabPage1.Controls.Add(txt_monto);
+      tabPage1.Controls.Add(lbl_mensaje);
+      tabPage1.Controls.Add(txt_nombre);
       tabPage1.Controls.Add(btn_register);
       tabPage1.ForeColor = SystemColors.ControlText;
       tabPage1.Location = new Point(4, 33);
@@ -108,13 +110,26 @@
       tabPage1.TabIndex = 0;
       tabPage1.Text = "Registro préstamo";
       // 
+      // btn_ordenar
+      // 
+      btn_ordenar.BackColor = Color.Navy;
+      btn_ordenar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point,  0);
+      btn_ordenar.ForeColor = SystemColors.ButtonHighlight;
+      btn_ordenar.Location = new Point(571, 434);
+      btn_ordenar.Name = "btn_ordenar";
+      btn_ordenar.Size = new Size(365, 48);
+      btn_ordenar.TabIndex = 35;
+      btn_ordenar.Text = "Ordenar";
+      btn_ordenar.UseVisualStyleBackColor = false;
+      btn_ordenar.Click += btn_ordenar_Click;
+      // 
       // lst_clientes
       // 
       lst_clientes.FormattingEnabled = true;
       lst_clientes.ItemHeight = 21;
       lst_clientes.Location = new Point(197, 571);
       lst_clientes.Name = "lst_clientes";
-      lst_clientes.Size = new Size(356, 130);
+      lst_clientes.Size = new Size(739, 130);
       lst_clientes.TabIndex = 34;
       // 
       // cmb_ordenar
@@ -227,10 +242,10 @@
       // 
       // date_picker
       // 
-      date_picker.Location = new Point(589, 52);
+      date_picker.Location = new Point(571, 322);
       date_picker.Name = "date_picker";
       date_picker.Size = new Size(347, 29);
-      date_picker.TabIndex = 21;
+      date_picker.TabIndex = 6;
       date_picker.ValueChanged += date_picker_ValueChanged;
       // 
       // rtb_tasa_media
@@ -264,7 +279,7 @@
       rtb_tasa_baja.Location = new Point(203, 265);
       rtb_tasa_baja.Name = "rtb_tasa_baja";
       rtb_tasa_baja.Size = new Size(58, 25);
-      rtb_tasa_baja.TabIndex = 18;
+      rtb_tasa_baja.TabIndex = 5;
       rtb_tasa_baja.TabStop = true;
       rtb_tasa_baja.Text = "Baja";
       rtb_tasa_baja.UseVisualStyleBackColor = true;
@@ -275,35 +290,40 @@
       cmb_periodo.Location = new Point(206, 210);
       cmb_periodo.Name = "cmb_periodo";
       cmb_periodo.Size = new Size(347, 29);
-      cmb_periodo.TabIndex = 17;
+      cmb_periodo.TabIndex = 4;
       // 
-      // txt_dni_cliente
+      // txt_dni
       // 
-      txt_dni_cliente.Location = new Point(203, 103);
-      txt_dni_cliente.Name = "txt_dni_cliente";
-      txt_dni_cliente.Size = new Size(350, 29);
-      txt_dni_cliente.TabIndex = 2;
+      txt_dni.Location = new Point(203, 103);
+      txt_dni.MaxLength = 6;
+      txt_dni.Name = "txt_dni";
+      txt_dni.Size = new Size(350, 29);
+      txt_dni.TabIndex = 2;
       // 
-      // text_monto_prestamo
+      // txt_monto
       // 
-      text_monto_prestamo.Location = new Point(203, 157);
-      text_monto_prestamo.Name = "text_monto_prestamo";
-      text_monto_prestamo.Size = new Size(350, 29);
-      text_monto_prestamo.TabIndex = 3;
+      txt_monto.Location = new Point(203, 157);
+      txt_monto.Name = "txt_monto";
+      txt_monto.Size = new Size(350, 29);
+      txt_monto.TabIndex = 3;
       // 
-      // textBox1
+      // lbl_mensaje
       // 
-      textBox1.Location = new Point(203, 508);
-      textBox1.Name = "textBox1";
-      textBox1.Size = new Size(350, 29);
-      textBox1.TabIndex = 15;
+      lbl_mensaje.BackColor = Color.FromArgb(  224,   224,   224);
+      lbl_mensaje.ForeColor = Color.Navy;
+      lbl_mensaje.Location = new Point(203, 508);
+      lbl_mensaje.Multiline = true;
+      lbl_mensaje.Name = "lbl_mensaje";
+      lbl_mensaje.ReadOnly = true;
+      lbl_mensaje.Size = new Size(733, 29);
+      lbl_mensaje.TabIndex = 15;
       // 
-      // txt_nombre_cliente
+      // txt_nombre
       // 
-      txt_nombre_cliente.Location = new Point(203, 52);
-      txt_nombre_cliente.Name = "txt_nombre_cliente";
-      txt_nombre_cliente.Size = new Size(350, 29);
-      txt_nombre_cliente.TabIndex = 1;
+      txt_nombre.Location = new Point(203, 52);
+      txt_nombre.Name = "txt_nombre";
+      txt_nombre.Size = new Size(350, 29);
+      txt_nombre.TabIndex = 0;
       // 
       // btn_register
       // 
@@ -312,19 +332,20 @@
       btn_register.Location = new Point(206, 371);
       btn_register.Name = "btn_register";
       btn_register.Size = new Size(347, 48);
-      btn_register.TabIndex = 14;
+      btn_register.TabIndex = 7;
       btn_register.Text = "Registrar";
       btn_register.UseVisualStyleBackColor = false;
+      btn_register.Click += btn_register_Click;
       // 
       // tabPage2
       // 
       tabPage2.BackColor = Color.FromArgb(  192,   255,   192);
-      tabPage2.Controls.Add(label4);
-      tabPage2.Controls.Add(label3);
-      tabPage2.Controls.Add(label2);
-      tabPage2.Controls.Add(listBox1);
-      tabPage2.Controls.Add(textBox2);
-      tabPage2.Controls.Add(button1);
+      tabPage2.Controls.Add(lbl_resultado_busqueda);
+      tabPage2.Controls.Add(lbl_tasa_aplicada);
+      tabPage2.Controls.Add(lbl_monto_total);
+      tabPage2.Controls.Add(lst_cronograma);
+      tabPage2.Controls.Add(txt_buscar_dni);
+      tabPage2.Controls.Add(btn_buscar);
       tabPage2.Controls.Add(label6);
       tabPage2.Location = new Point(4, 33);
       tabPage2.Name = "tabPage2";
@@ -332,6 +353,60 @@
       tabPage2.Size = new Size(984, 735);
       tabPage2.TabIndex = 1;
       tabPage2.Text = "Búsqueda cliente";
+      // 
+      // lbl_resultado_busqueda
+      // 
+      lbl_resultado_busqueda.AutoSize = true;
+      lbl_resultado_busqueda.Location = new Point(179, 314);
+      lbl_resultado_busqueda.Name = "lbl_resultado_busqueda";
+      lbl_resultado_busqueda.Size = new Size(0, 21);
+      lbl_resultado_busqueda.TabIndex = 20;
+      // 
+      // lbl_tasa_aplicada
+      // 
+      lbl_tasa_aplicada.AutoSize = true;
+      lbl_tasa_aplicada.Location = new Point(178, 269);
+      lbl_tasa_aplicada.Name = "lbl_tasa_aplicada";
+      lbl_tasa_aplicada.Size = new Size(0, 21);
+      lbl_tasa_aplicada.TabIndex = 19;
+      // 
+      // lbl_monto_total
+      // 
+      lbl_monto_total.AutoSize = true;
+      lbl_monto_total.Location = new Point(178, 233);
+      lbl_monto_total.Name = "lbl_monto_total";
+      lbl_monto_total.Size = new Size(0, 21);
+      lbl_monto_total.TabIndex = 18;
+      // 
+      // lst_cronograma
+      // 
+      lst_cronograma.FormattingEnabled = true;
+      lst_cronograma.ItemHeight = 21;
+      lst_cronograma.Location = new Point(178, 75);
+      lst_cronograma.Name = "lst_cronograma";
+      lst_cronograma.Size = new Size(495, 151);
+      lst_cronograma.TabIndex = 17;
+      // 
+      // txt_buscar_dni
+      // 
+      txt_buscar_dni.Location = new Point(179, 23);
+      txt_buscar_dni.MaxLength = 6;
+      txt_buscar_dni.Name = "txt_buscar_dni";
+      txt_buscar_dni.Size = new Size(226, 29);
+      txt_buscar_dni.TabIndex = 0;
+      // 
+      // btn_buscar
+      // 
+      btn_buscar.BackColor = Color.Teal;
+      btn_buscar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point,  0);
+      btn_buscar.ForeColor = SystemColors.ButtonFace;
+      btn_buscar.Location = new Point(462, 19);
+      btn_buscar.Name = "btn_buscar";
+      btn_buscar.Size = new Size(211, 34);
+      btn_buscar.TabIndex = 2;
+      btn_buscar.Text = "Buscar cliente";
+      btn_buscar.UseVisualStyleBackColor = false;
+      btn_buscar.Click += btn_buscar_Click;
       // 
       // label6
       // 
@@ -342,60 +417,6 @@
       label6.Size = new Size(120, 21);
       label6.TabIndex = 10;
       label6.Text = "Buscar por DNI";
-      // 
-      // button1
-      // 
-      button1.BackColor = Color.Teal;
-      button1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point,  0);
-      button1.Location = new Point(631, 31);
-      button1.Name = "button1";
-      button1.Size = new Size(347, 48);
-      button1.TabIndex = 15;
-      button1.Text = "Buscar cliente";
-      button1.UseVisualStyleBackColor = false;
-      // 
-      // textBox2
-      // 
-      textBox2.Location = new Point(179, 23);
-      textBox2.Name = "textBox2";
-      textBox2.Size = new Size(226, 29);
-      textBox2.TabIndex = 16;
-      // 
-      // listBox1
-      // 
-      listBox1.FormattingEnabled = true;
-      listBox1.ItemHeight = 21;
-      listBox1.Location = new Point(178, 75);
-      listBox1.Name = "listBox1";
-      listBox1.Size = new Size(227, 88);
-      listBox1.TabIndex = 17;
-      // 
-      // label2
-      // 
-      label2.AutoSize = true;
-      label2.Location = new Point(51, 191);
-      label2.Name = "label2";
-      label2.Size = new Size(98, 21);
-      label2.TabIndex = 18;
-      label2.Text = "Monto total";
-      // 
-      // label3
-      // 
-      label3.AutoSize = true;
-      label3.Location = new Point(50, 250);
-      label3.Name = "label3";
-      label3.Size = new Size(104, 21);
-      label3.TabIndex = 19;
-      label3.Text = "Tasa aplicada";
-      // 
-      // label4
-      // 
-      label4.AutoSize = true;
-      label4.Location = new Point(53, 339);
-      label4.Name = "label4";
-      label4.Size = new Size(159, 21);
-      label4.TabIndex = 20;
-      label4.Text = "Resultado búsqueda";
       // 
       // tb_control
       // 
@@ -425,10 +446,10 @@
     private RadioButton rtb_tasa_alta;
     private RadioButton rtb_tasa_baja;
     private ComboBox cmb_periodo;
-    private TextBox txt_dni_cliente;
-    private TextBox text_monto_prestamo;
-    private TextBox textBox1;
-    private TextBox txt_nombre_cliente;
+    private TextBox txt_dni;
+    private TextBox txt_monto;
+    private TextBox lbl_mensaje;
+    private TextBox txt_nombre;
     private Button btn_register;
     private Label label1;
     private Label label13;
@@ -443,11 +464,12 @@
     private Label lbl_error_fecha;
     private ComboBox cmb_ordenar;
     private ListBox lst_clientes;
-    private Button button1;
-    private TextBox textBox2;
-    private ListBox listBox1;
-    private Label label2;
-    private Label label3;
-    private Label label4;
+    private Button btn_buscar;
+    private TextBox txt_buscar_dni;
+    private ListBox lst_cronograma;
+    private Label lbl_monto_total;
+    private Label lbl_tasa_aplicada;
+    private Label lbl_resultado_busqueda;
+    private Button btn_ordenar;
   }
 }
