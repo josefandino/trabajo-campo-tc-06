@@ -55,7 +55,7 @@ namespace trabajo_campo_tc_06 {
       cmb_ordenar.SelectedIndex = 0;
     }
 
-    Cliente[ ] clientes = new Cliente[ 0 ];
+    Cliente[] clientes = new Cliente[0];
 
     private void date_picker_ValueChanged(object sender, EventArgs e) {
       var datePicker = (DateTimePicker) sender;
@@ -214,6 +214,11 @@ namespace trabajo_campo_tc_06 {
         return;
       }
 
+      if(txt_buscar_dni.Text.Length != 6) {
+        lbl_resultado_busqueda.Text = "El DNI debe tener 6 carácteres";
+        return;
+      }
+
       Cliente encontrado = BuscarClientePorDni(txt_buscar_dni.Text);
 
       if(encontrado == null) {
@@ -226,5 +231,5 @@ namespace trabajo_campo_tc_06 {
       GenerarCronograma(encontrado);
     }
 
-    }
+  }
 }
