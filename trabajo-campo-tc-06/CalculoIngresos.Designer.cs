@@ -45,6 +45,7 @@
       btn_split = new Button();
       btn_buscar = new Button();
       txt_buscar = new TextBox();
+      btn_concatenar = new Button();
       SuspendLayout();
       // 
       // lbl_calculadora
@@ -226,7 +227,7 @@
       // 
       lst_resultados.FormattingEnabled = true;
       lst_resultados.ItemHeight = 15;
-      lst_resultados.Location = new Point(380, 379);
+      lst_resultados.Location = new Point(380, 422);
       lst_resultados.Name = "lst_resultados";
       lst_resultados.Size = new Size(351, 94);
       lst_resultados.TabIndex = 43;
@@ -286,12 +287,26 @@
       txt_buscar.Size = new Size(168, 23);
       txt_buscar.TabIndex = 48;
       // 
+      // btn_concatenar
+      // 
+      btn_concatenar.BackColor = Color.Purple;
+      btn_concatenar.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point,  0);
+      btn_concatenar.ForeColor = SystemColors.ButtonFace;
+      btn_concatenar.Location = new Point(446, 368);
+      btn_concatenar.Name = "btn_concatenar";
+      btn_concatenar.Size = new Size(285, 39);
+      btn_concatenar.TabIndex = 49;
+      btn_concatenar.Text = "Concatenar nombre y apellido";
+      btn_concatenar.UseVisualStyleBackColor = false;
+      btn_concatenar.Click += btn_concatenar_Click;
+      // 
       // CalculoIngresos
       // 
       AutoScaleDimensions = new SizeF(7F, 15F);
       AutoScaleMode = AutoScaleMode.Font;
       BackColor = Color.FromArgb(  192,   192,   255);
       ClientSize = new Size(800, 579);
+      Controls.Add(btn_concatenar);
       Controls.Add(txt_buscar);
       Controls.Add(btn_buscar);
       Controls.Add(btn_split);
@@ -344,5 +359,6 @@
     private Button btn_split;
     private Button btn_buscar;
     private TextBox txt_buscar;
+    private Button btn_concatenar;
   }
 }
